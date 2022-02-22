@@ -1,99 +1,221 @@
 # Default 
-from numpy import empty
 import streamlit as st 
+import csv
 st.set_page_config(layout="wide")
-page = st.sidebar.selectbox("Choose your page", ["Home", "About", "Rate Subjects"]) 
 
-# --- - - - - - Logic Part --- - - - - -
+st.markdown("<link href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3' crossorigin='anonymous'>", unsafe_allow_html=True)
+st.markdown("<script src='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js' integrity='sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p' crossorigin='anonymous'></script>", unsafe_allow_html=True)
+
+    # --- - - - - - Logic Part --- - - - - -
 department = {
-    "Information Technology" : {},
-    "Artificial Intelligence and Data Science" : {},
-    "Electronics and Communication Engineering" : {},
-    "Mechanical Engineering" : {},
-    "Computer Science Engineering" : {},
-    "Computer Science and Business System" : {}
-    }
-
+            "Information Technology" : {},
+            "Artificial Intelligence and Data Science" : {},
+            "Electronics and Communication Engineering" : {},
+            "Mechanical Engineering" : {},
+            "Computer Science Engineering" : {},
+            "Computer Science and Business System" : {}
+            }
 
 # --- - - - - - Home Page --- - - - - -
-if page == "Home":
-    st.markdown("<h2 style='text-align: center; color: #ccc; margin-top : -50px; margin-bottom: 20px'>Welcome Student</h2>", unsafe_allow_html=True)
-    # Name columns
-    name_col,roll_col,depart_col = st.columns(3)
-    with name_col:
-        student_name = st.text_input("Enter your name : ")
-    with roll_col:
-        student_rollno = st.text_input("Enter your roll no : ")
-    with depart_col:
-        student_department = st.selectbox("What's your Department : ",("Information Technology", "Artificial Intelligence and Data Science", "Computer Science Engineering", "Electronics and Communication Engineering", "Computer Science and Business System", "Mechanical Engineering"))
-    submit_details = st.button("Submit")
-    
-    if submit_details:
-        st.success("Submitted!")
-        st.success(f"""
-                Name : {student_name}\n
-                Rollno : {student_rollno}\n
-                Department : {student_department}
-                """)
-
-
-# --- - - - - - About Page --- - - - - -
-elif page == "About":
-    st.markdown("<h2 style='text-align: center; color: #ccc; margin-top : -50px; margin-bottom: 20px'>About Us</h2>", unsafe_allow_html=True)
+st.markdown("<h2 style='text-align: center; color: #ccc; margin-top : -50px; margin-bottom: 20px'>Student Feedback System</h2>", unsafe_allow_html=True)
+# Name columns
+name_col,roll_col,depart_col = st.columns(3)
+with name_col:
+    student_name = st.text_input("Enter your name : ")
+with roll_col:
+    student_rollno = st.text_input("Enter your roll no : ")
+with depart_col:
+    student_department = st.selectbox("What's your Department : ",("Information Technology", "Artificial Intelligence and Data Science", "Computer Science Engineering", "Electronics and Communication Engineering", "Computer Science and Business System", "Mechanical Engineering"))
 
 
 # --- - - - - - Rate System Page --- - - - - -
-elif page == "Rate Subjects":
-    st.markdown("<h2 style='text-align: center; color: #ccc; margin-top : -50px; margin-bottom: 20px'>Student Feedback System</h2>", unsafe_allow_html=True)
-    # Rate System Page
-    sub_coloum,emp1 = st.columns([3,4])
-    with sub_coloum:
-        subject_selection =  st.selectbox("Select a subject which you want to rate",("Professional English","Engineering Physics","Engineering Chemistry","Matrices and Calculus", "Python Programming and Problem Solving"))
-    with emp1:
-        st.markdown(f"<h6 style='text-align: center; color: #4BB543; margin-top : 40px'>You selected {subject_selection}</h6>", unsafe_allow_html=True)
+rating_choice = ["Not so good","Avearage","Good","Excellent"]
+# Rate System Page
+st.markdown("<h3 style ='margin-top : 30px'>Questions</h3>", unsafe_allow_html=True)
+question_col,col_1,col_2,col_3,col_4,col_5 = st.columns([3,2,2,2,2,2])
+with question_col:
+    st.markdown("<p style ='margin-top : 50px'>1. How's your teacher explains in core subjects?</p>", unsafe_allow_html=True)
+    st.markdown("<p style ='margin-top : 65px'>2. How's your teacher explains in core subjects?</p>", unsafe_allow_html=True)
+    st.markdown("<p style ='margin-top : 55px'>3. How's your teacher explains in core subjects?</p>", unsafe_allow_html=True)
+    st.markdown("<p style ='margin-top : 60px'>4. How's your teacher explains in core subjects?</p>", unsafe_allow_html=True)
+    st.markdown("<p style ='margin-top : 55px'>5. How's your teacher explains in core subjects?</p>", unsafe_allow_html=True)
+    st.markdown("<p style ='margin-top : 55px'>6. How's your teacher explains in core subjects?</p>", unsafe_allow_html=True)
+    st.markdown("<p style ='margin-top : 55px'>7. How's your teacher explains in core subjects?</p>", unsafe_allow_html=True)
+    st.markdown("<p style ='margin-top : 55px'>8. How's your teacher explains in core subjects?</p>", unsafe_allow_html=True)
+    st.markdown("<p style ='margin-top : 55px'>9. How's your teacher explains in core subjects?</p>", unsafe_allow_html=True)
+    st.markdown("<p style ='margin-top : 60px'>10. How's your teacher explains in core subjects?</p>", unsafe_allow_html=True)
+    st.markdown("<p style ='margin-top : 55px'>11. How's your teacher explains in core subjects?</p>", unsafe_allow_html=True)
+    st.markdown("<p style ='margin-top : 60px'>12. How's your teacher explains in core subjects?</p>", unsafe_allow_html=True)
+    st.markdown("<p style ='margin-top : 55px'>13. How's your teacher explains in core subjects?</p>", unsafe_allow_html=True)
+    st.markdown("<p style ='margin-top : 60px'>14. How's your teacher explains in core subjects?</p>", unsafe_allow_html=True)
+    st.markdown("<p style ='margin-top : 55px'>15. How's your teacher explains in core subjects?</p>", unsafe_allow_html=True)
+with col_1:
+    st.markdown("<h5 style ='margin-top : -45px'>Physics</h5>", unsafe_allow_html=True)
+    physics_ques_1 = st.selectbox("‎",(rating_choice))
+    st.markdown("<h3> </h3>", unsafe_allow_html=True)
+    physics_ques_2 = st.selectbox(" ‎",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    physics_ques_3 = st.selectbox(" ‎ ",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    physics_ques_4 = st.selectbox(" ‎  ",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    physics_ques_5 = st.selectbox("  ‎  ",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    physics_ques_6 = st.selectbox("  ‎   ",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    physics_ques_7 = st.selectbox("   ‎   ",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    physics_ques_8 = st.selectbox("   ‎    ",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    physics_ques_9 = st.selectbox("    ‎    ",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    physics_ques_10 = st.selectbox("    ‎     ",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    physics_ques_11 = st.selectbox("     ‎     ",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    physics_ques_12 = st.selectbox("     ‎      ",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    physics_ques_13 = st.selectbox("      ‎      ",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    physics_ques_14 = st.selectbox("      ‎       ",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    physics_ques_15 = st.selectbox("       ‎       ",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+with col_2:
+    st.markdown("<h5 style ='margin-top : -45px'>Chemistry</h5>", unsafe_allow_html=True)
+    chemistry_ques_1 = st.selectbox("‎‎",(rating_choice))
+    st.markdown("<h3> </h3>", unsafe_allow_html=True)
+    chemistry_ques_2 = st.selectbox(" ‎‎",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    chemistry_ques_3 = st.selectbox(" ‎‎ ",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    chemistry_ques_4 = st.selectbox(" ‎‎  ",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    chemistry_ques_5 = st.selectbox("  ‎‎  ",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    chemistry_ques_6 = st.selectbox("  ‎‎   ",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    chemistry_ques_7 = st.selectbox("   ‎‎   ",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    chemistry_ques_8 = st.selectbox("   ‎‎    ",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    chemistry_ques_9 = st.selectbox("    ‎‎    ",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    chemistry_ques_10 = st.selectbox("     ‎‎    ",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    chemistry_ques_11 = st.selectbox("     ‎‎     ",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    chemistry_ques_12 = st.selectbox("     ‎‎      ",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    chemistry_ques_13 = st.selectbox("      ‎‎      ",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    chemistry_ques_14 = st.selectbox("      ‎‎       ",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    chemistry_ques_15 = st.selectbox("       ‎‎       ",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+with col_3:
+    st.markdown("<h5 style ='margin-top : -45px'>English</h5>", unsafe_allow_html=True)
+    english_ques_1 = st.selectbox("‎‎‎",(rating_choice))
+    st.markdown("<h3> </h3>", unsafe_allow_html=True)
+    english_ques_2 = st.selectbox(" ‎‎‎",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    english_ques_3 = st.selectbox(" ‎‎‎ ",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    english_ques_4 = st.selectbox(" ‎‎‎  ",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    english_ques_5 = st.selectbox("  ‎‎‎  ",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    english_ques_6 = st.selectbox("  ‎‎‎   ",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    english_ques_7 = st.selectbox("   ‎‎‎   ",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    english_ques_8 = st.selectbox("   ‎‎‎    ",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    english_ques_9 = st.selectbox("    ‎‎‎    ",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    english_ques_10 = st.selectbox("     ‎‎‎    ",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    english_ques_11 = st.selectbox("     ‎‎‎     ",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    english_ques_12 = st.selectbox("     ‎‎‎      ",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    english_ques_13 = st.selectbox("      ‎‎‎      ",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    english_ques_14 = st.selectbox("      ‎‎‎       ",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    english_ques_15 = st.selectbox("       ‎‎‎       ",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+with col_4:
+    st.markdown("<h5 style ='margin-top : -45px'>Maths</h5>", unsafe_allow_html=True)
+    maths_ques_1 = st.selectbox("‎‎‎‎",(rating_choice))
+    st.markdown("<h3> </h3>", unsafe_allow_html=True)
+    maths_ques_2 = st.selectbox(" ‎‎‎‎",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    maths_ques_3 = st.selectbox(" ‎‎‎‎ ",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    maths_ques_4 = st.selectbox(" ‎‎‎‎  ",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    maths_ques_5 = st.selectbox("  ‎‎‎‎  ",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    maths_ques_6 = st.selectbox("  ‎‎‎‎   ",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    maths_ques_7 = st.selectbox("   ‎‎‎‎   ",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    maths_ques_8 = st.selectbox("   ‎‎‎‎    ",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    maths_ques_9 = st.selectbox("    ‎‎‎‎    ",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    maths_ques_10 = st.selectbox("     ‎‎‎‎    ",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    maths_ques_11 = st.selectbox("     ‎‎‎‎     ",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    maths_ques_12 = st.selectbox("     ‎‎‎‎      ",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    maths_ques_13 = st.selectbox("      ‎‎‎‎      ",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    maths_ques_14 = st.selectbox("      ‎‎‎‎       ",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    maths_ques_15 = st.selectbox("       ‎‎‎‎       ",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+with col_5:
+    st.markdown("<h5 style ='margin-top : -45px'>PSPP</h5>", unsafe_allow_html=True)
+    pspp_ques_1 = st.selectbox("‎‎ ‎",(rating_choice))
+    st.markdown("<h3> </h3>", unsafe_allow_html=True)
+    pspp_ques_2 = st.selectbox(" ‎‎ ‎",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    pspp_ques_3 = st.selectbox(" ‎‎  ‎",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    pspp_ques_4 = st.selectbox(" ‎‎   ‎",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    pspp_ques_5 = st.selectbox("  ‎‎   ‎",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    pspp_ques_6 = st.selectbox("  ‎ ‎   ‎",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    pspp_ques_7 = st.selectbox("   ‎  ‎   ‎",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    pspp_ques_8 = st.selectbox("   ‎‎    ‎",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    pspp_ques_9 = st.selectbox("    ‎‎    ‎",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    pspp_ques_10 = st.selectbox("     ‎‎    ‎",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    pspp_ques_11 = st.selectbox("     ‎‎     ‎",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    pspp_ques_12 = st.selectbox("     ‎‎      ‎",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    pspp_ques_13 = st.selectbox("      ‎‎      ‎",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    pspp_ques_14 = st.selectbox("      ‎‎       ‎",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+    pspp_ques_15 = st.selectbox("       ‎‎       ‎",(rating_choice))
+    st.markdown("<h5> </h5>", unsafe_allow_html=True)
+
+
+
+st.markdown("<h2>  </h2>", unsafe_allow_html=True)
+
+submit_answers_btn = st.button("Submit feedback")
+
     
-    st.markdown("<h3 style ='margin-top : 30px'>Questions</h3>", unsafe_allow_html=True)
-    rate_select,emp3 = st.columns([3,2])
-    if subject_selection == "Professional English":
-        with rate_select:
-            ques_1 = st.selectbox("How's your teacher explains in core subjects?",("Not so good","Avearage","Good","Excellent"))
-            ques_2 = st.selectbox("How to do that",("Not so good","Avearage","Good","Excellent"))
-            # ques_3 = st.selectbox("How's your teacher explains in core subjects?",("Not so good","Avearage","Good","Excellent"))
-            # ques_4 = st.selectbox("How to do that",("Not so good","Avearage","Good","Excellent"))
-            # ques_5 = st.selectbox("How's your teacher explains in core subjects?",("Not so good","Avearage","Good","Excellent"))
-            # ques_6 = st.selectbox("How to do that",("Not so good","Avearage","Good","Excellent"))
-            # ques_7 = st.selectbox("How's your teacher explains in core subjects?",("Not so good","Avearage","Good","Excellent"))
-            # ques_8 = st.selectbox("How to do that",("Not so good","Avearage","Good","Excellent"))
-            # ques_9 = st.selectbox("How's your teacher explains in core subjects?",("Not so good","Avearage","Good","Excellent"))
-            # ques_10 = st.selectbox("How to do that",("Not so good","Avearage","Good","Excellent"))
-            # ques_11 = st.selectbox("How's your teacher explains in core subjects?",("Not so good","Avearage","Good","Excellent"))
-            # ques_12 = st.selectbox("How to do that",("Not so good","Avearage","Good","Excellent"))
-            # ques_13 = st.selectbox("How's your teacher explains in core subjects?",("Not so good","Avearage","Good","Excellent"))
-            # ques_14 = st.selectbox("How to do that",("Not so good","Avearage","Good","Excellent"))
-            # ques_15 = st.selectbox("How's your teacher explains in core subjects?",("Not so good","Avearage","Good","Excellent"))
-        with emp3:
-            st.empty()
-    if subject_selection == "Python Programming and Problem Solving":
-        with rate_select:
-            ques_1 = st.selectbox("How's your teacher explains in core subjects?",("Not so good","Avearage","Good","Excellent"))
-            ques_2 = st.selectbox("How to do that",("Not so good","Avearage","Good","Excellent"))
-        with emp3:
-            st.empty()
-    if subject_selection == "Engineering Chemistry":
-        with rate_select:
-            ques_1 = st.selectbox("How's your teacher explains in core subjects?",("Not so good","Avearage","Good","Excellent"))
-            ques_2 = st.selectbox("How to do that",("Not so good","Avearage","Good","Excellent"))
-        with emp3:
-            st.empty()
-    if subject_selection == "Matrices and Calculus":
-        with rate_select:
-            ques_1 = st.selectbox("How's your teacher explains in core subjects?",("Not so good","Avearage","Good","Excellent"))
-            ques_2 = st.selectbox("How to do that",("Not so good","Avearage","Good","Excellent"))
-        with emp3:
-            st.empty()
-    if subject_selection == "Engineering Physics":
-        with rate_select:
-            ques_1 = st.selectbox("How's your teacher explains in core subjects?",("Not so good","Avearage","Good","Excellent"))
-            ques_2 = st.selectbox("How to do that",("Not so good","Avearage","Good","Excellent"))
-        with emp3:
-            st.empty()
+if submit_answers_btn:
+    st.success("Your answer submitted!")
